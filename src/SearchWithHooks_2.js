@@ -23,17 +23,14 @@ export default function SearchWithHooks(props) {
     const osoite = useFormInput('');
     const [searchString, setSearchString] = useState('');
     const [message, setMessage] = useState('');
-    
-    const asiakasTable = useAsiakasdata(customerdata,customerdatacount); //No en saanut tälleesti toteutettua, custom hook olisi ollut tämä
-    //const [asiakasTable,useAsiakasTable]=useState('');//30.5.2020
-    //const asiakasTable =useAsiakasTable(customerdata);//30.5.2020
+    const asiakasTable = useAsiakasdata(customerdata); //No en saanut tälleesti toteutettua, custom hook olisi ollut tämä
 
-    //async ja axios???? Ei toiminut jos laitoin tähän
-    //useEffect(async () => {
-    useEffect( () => {
+
+    //async ja axios????
+    useEffect(() => {
         if (count > 0) { //ei haeta ComponentOnMount:ssa
             //console.log('effect')
-             axios.get('http://localhost:3004/asiakkaat' + searchString)
+            axios.get('http://localhost:3004/asiakkaat' + searchString)
                 .then(response => {
                     console.log('promise fulfilled')
                     setCustomerdata(response.data)
@@ -47,11 +44,8 @@ export default function SearchWithHooks(props) {
         }
     }, [count])  //kun count muuttuu, hakee uusiksi
 
-    useEffect(() => {
-        //useAsiakasTable();
-        alert("use Effectissä");
-        //Asiakaslista(customerdata);
-    },[customerdata]);
+
+
 
 
 
@@ -89,7 +83,6 @@ export default function SearchWithHooks(props) {
 
     //Saiskohan tämänkin eventin yhteiseksi Hae ja Poista:lle...
     function handleButtonClick(e) {
-        //alert(e.target.name);
         setCustomerdata ([]); //tyhjennetään data ennen uutta hakua
         setCustomerdatacount(0);//tyhjennetään data ennen uutta hakua
         setMessage("Loading....");
@@ -113,7 +106,7 @@ export default function SearchWithHooks(props) {
                 <br />
                 
             </form>
-            <button name="Hae" onClick={handleButtonClick}>Hae</button>
+            <button onClick={handleButtonClick}>Hae</button>
             <br />
 
             <p>{message}</p>
@@ -121,7 +114,6 @@ export default function SearchWithHooks(props) {
             <table border="1"><tbody>
                 {tableHeaderRow}
                 <Asiakaslista asiakkaat={customerdata}></Asiakaslista>
-                
             </tbody></table>
             <table border="1"><tbody>
                 {asiakasTable}
@@ -145,15 +137,13 @@ function useFormInput(initialValue) {
     };
 }//useFormInput END
 
-//Tästä en saanut tuota dataa mäpättyä ilman että tuli virhe jossain, yleensä tuon lengthin tutkimisessa undefined:lle
-function useAsiakasdata(as,ascount) {
+//Tästä en saanut tuota dataa mäpättyä ilman että tuli virhe jossain, yleensä tuon lenhtin tutkimisessa undefined:lle
+function useAsiakasdata(as) {
     let items = "";
+    /*
+        if (as.length > 0) {
     
-        //if (as.customerrows.length > 0) {
-        //if (ascount>0){ //30.5.2020 TOIMII!!!! VIHDOINKIN
-        if (as.length > 0) { //30.5.2020 no nyt sain jostain syystä tämänkin toimimaan
-            //items = as.customerrows.map((customer) =>
-            items = as.map((customer) =>
+            items = as.asiakkaat.map((customer) =>
                 //<li key={(customer.id).toString()}>{customer.nimi}  {customer.osoite} {customer.postinumero} {customer.postitmp} {customer.puh}</li>             
                 //dataToTable(customer)
     
@@ -168,15 +158,15 @@ function useAsiakasdata(as,ascount) {
     
             );
         }
-        
+        */
     return items;
 }//useAsiakasdata
 
-//custom hook headerille erikseen, kun en saanut sitä tuonne datan yhteyteen
+//custom hook headerille rikseen, kun en saanut sitä tuonne datan yhteyteen
 function usetableHRow(customerdatacount) {
     let tHeaderRow = "";
     if (customerdatacount > 0) {
-        tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th>Poisto, toimii</th></tr>;
+        tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th>Poista, crash</th><th>Poisto, kesken</th></tr>;
     }
     return tHeaderRow
 } //usetableHRow
@@ -205,8 +195,9 @@ function Asiakaslista(as) {
                 <td> {customer.osoite}</td>
                 <td>{customer.postinumero}</td>
                 <td> {customer.postitmp} </td>
-                <td>{customer.puh}</td>                
-                <td><button value={customer.id} onClick={handleButtonClick}>Poista (toimii, mutta hae uusiksi...) </button></td>
+                <td>{customer.puh}</td>
+                <td><button value={customer.id} onClick={((e) => this.poistaClicked(e, customer.id))}>Poista (ei toteutettu) </button></td>
+                <td><button value={customer.id} onClick={handleButtonClick}>TEST: Poista </button></td>
             </tr>
 
         );
@@ -224,7 +215,6 @@ async function delData(id) {
     //this.setState({ customerdata: '' });//Ei tuo erroria nähtävästi, vaikka table-elementti on sitten tyhjä
     let response = await fetch("http://localhost:3004/asiakkaat/" + id, { method: 'DELETE' });
     let data = await response.json();
-    //setCount(0); Tämä ei ole samassa skoupissa
     //TODO//this.fetchData();
 }
 
