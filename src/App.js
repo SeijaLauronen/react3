@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import SearchWithHooks from './SearchWithHooks'; //87
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App() { // kokeilin vaihtaa funktioksi, toimiiko samalla tavalla
+	return (	
+		//Tuo on ärsyttävä kun table ja tbodysta tulee usein:Whitespace text nodes cannot appear as a child of <tbody>. Vaikka siellä ei olis mitään whitespacea??!!	
+			<div>
+				<header>
+					<h1>React 3 tehtävät</h1>
+				</header>						
+        <SearchWithHooks></SearchWithHooks>
+			</div>           	    
+	);
 }
+
 
 export default App;
