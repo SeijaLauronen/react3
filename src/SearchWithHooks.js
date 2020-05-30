@@ -26,7 +26,7 @@ export default function SearchWithHooks(props) {
     const asiakasTable = useAsiakasdata(customerdata); //No en saanut tälleesti toteutettua, custom hook olisi ollut tämä
 
 
-
+    //async ja axios????
     useEffect(() => {
         if (count > 0) { //ei haeta ComponentOnMount:ssa
             //console.log('effect')
@@ -43,6 +43,10 @@ export default function SearchWithHooks(props) {
                 })
         }
     }, [count])  //kun count muuttuu, hakee uusiksi
+
+
+
+
 
 
     useEffect(() => {
@@ -75,7 +79,7 @@ export default function SearchWithHooks(props) {
             setMessage("Asiakkaita ei löytynyt annetulla hakuehdolla");
         }
     }, [customerdata,count]);//kun customerdata muuttuu, katostaan, oliko siinä rivejä
-*/
+    */
 
     //Saiskohan tämänkin eventin yhteiseksi Hae ja Poista:lle...
     function handleButtonClick(e) {
@@ -86,6 +90,7 @@ export default function SearchWithHooks(props) {
         //alert(searchString);
         //alert(count);//alerttiin mennessä ei vielä ole kasvattanut tuota counttia! vasta tästä poistuttaessa!!        
         //alert (e.target.value);
+        
     }
 
     return (
@@ -118,7 +123,7 @@ export default function SearchWithHooks(props) {
 
     )
 
-}
+}//SearchWithHooks END
 
 
 function useFormInput(initialValue) {
@@ -130,7 +135,7 @@ function useFormInput(initialValue) {
         value,
         onChange: handleChange
     };
-}
+}//useFormInput END
 
 //Tästä en saanut tuota dataa mäpättyä ilman että tuli virhe jossain, yleensä tuon lenhtin tutkimisessa undefined:lle
 function useAsiakasdata(as) {
@@ -155,7 +160,7 @@ function useAsiakasdata(as) {
         }
         */
     return items;
-}
+}//useAsiakasdata
 
 //custom hook headerille rikseen, kun en saanut sitä tuonne datan yhteyteen
 function usetableHRow(customerdatacount) {
@@ -164,12 +169,15 @@ function usetableHRow(customerdatacount) {
         tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th>Poista, crash</th><th>Poisto, kesken</th></tr>;
     }
     return tHeaderRow
-}
+} //usetableHRow
+
 
 function Asiakaslista(as) {
-
-    function handleButtonClick(e) {
+    alert("Asiakaslista, miksi tulee tänne näin monta kertaa???");
+    
+    function handleButtonClick(e) { //tämä on siis deletelle
         alert("Poistettava id:" + e.target.value);
+        delData(e.target.value);
     }
 
     let tHeaderRow = <tr key="-1"><th>Nimi</th><th>Osoite</th><th>Postinro</th><th>Postitoimipaikka</th><th>Puh</th><th>Poista</th><th>Yhteystietoihin (href)</th></tr>;
@@ -198,4 +206,15 @@ function Asiakaslista(as) {
     retval += items; //no mikä se nyt tässäkin tökkii??!! MIKSI EN SAA TÄHÄN MUKAAN TUOTA HEADER ROWTA!!!! Foreach:lla se kai onnistuisi
     //return retval;
     return items;
+} //Asiakaslista
+
+async function delData(id) {
+    alert ("ollaan delDatassa")
+    //TODO//setMessage("Loading....");
+    //TODO//this.setState({ message: 'Deleting...' });
+    //this.setState({ customerdata: '' });//Ei tuo erroria nähtävästi, vaikka table-elementti on sitten tyhjä
+    let response = await fetch("http://localhost:3004/asiakkaat/" + id, { method: 'DELETE' });
+    let data = await response.json();
+    //TODO//this.fetchData();
 }
+

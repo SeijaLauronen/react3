@@ -9,14 +9,6 @@
       "puh": "040-123121"
     },
     {
-      "id": 2,
-      "nimi": "Kalle",
-      "osoite": "Testitie 2",
-      "postinumero": "70100",
-      "postitmp": "Kuopio",
-      "puh": "040-123122"
-    },
-	    {
       "id": 3,
       "nimi": "Maija",
       "osoite": "Kauppakatu 3",
@@ -32,7 +24,7 @@
       "postitmp": "Kuopio",
       "puh": "040-123122"
     },
-	{
+    {
       "id": 5,
       "nimi": "Teppo",
       "osoite": "Kauppakatu 5",
@@ -40,7 +32,7 @@
       "postitmp": "Kuopio",
       "puh": "040-123125"
     },
-	{
+    {
       "id": 6,
       "nimi": "Teppo",
       "osoite": "Kauppakatu 6",
@@ -48,14 +40,14 @@
       "postitmp": "Kuopio",
       "puh": "040-123126"
     },
-	{
+    {
       "id": 7,
       "nimi": "Veikko",
       "osoite": "Kauppakatu 7",
       "postinumero": "70700",
       "postitmp": "Kuopio",
       "puh": "040-123127"
-    },    
+    },
     {
       "id": 8,
       "nimi": "Kaarina",

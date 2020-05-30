@@ -1,6 +1,7 @@
 Palautus sisältää kuvat (t80), 'db.json' ja 'public' ja 'src', jossa tehtävät 81-86, kaikki yhdellä html-sivulla, sama App.js
-(Löytyy myös täältä: https://github.com/SeijaLauronen/react2)
+(Löytyy myös täältä: https://github.com/SeijaLauronen/react3)
 Tee tarvittaessa uusi react-appi komentokehoitteessa, ja korvaa sitten public ja src kansiot:
+(router on react 2 tehtäviin, sitä ei nyt react 3:ssa tarvita)
 	npx create-react-app testapp
 	cd testapp
 	npm install react-router-dom
@@ -18,12 +19,7 @@ tai viiveen näkymiseksi tehtävässä 82:
 db.json sisältää "taulun" 'asiakkaat' lisäksi muitakin 'tauluja'. 
 
 -------------------------------------
-80: Kuvat: get, add ja delete, numeroitu kokeilujärjestyksessä, myös epäonnistuneet kutsut
-81: Haku, 82: Loading..., 83: Hakuehdoilla ei löytynyt dataa, 84: Poisto 85:Router 86: Virhekäsittely. Koodissa on 2 eri vaihtoa toteutukselle, joista toinen on nyt kommentoitu.
-Vielä jäi ratkaisematta, kuinka routerin kanssa saisi välitettyä erroboundarin sisälläkin match-parametrin...
-Ylimääräisiä tiedostoja on mm. edeltävistä harjoituksista ja epäonnistuneista kokeiluista
-TODO: 
-*virhekäsittely, jos esim json-server ei ole käynnissä tms
+
 
 
 
