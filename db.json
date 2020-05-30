@@ -9,6 +9,14 @@
       "puh": "040-123121"
     },
     {
+      "id": 2,
+      "nimi": "Miina",
+      "osoite": "Kauppakatu 2",
+      "postinumero": "70100",
+      "postitmp": "Kuopio",
+      "puh": "040-123122"
+    },
+    {
       "id": 3,
       "nimi": "Maija",
       "osoite": "Kauppakatu 3",
@@ -17,12 +25,12 @@
       "puh": "040-123123"
     },
     {
-      "id": 5,
+      "id": 4,
       "nimi": "Teppo",
-      "osoite": "Kauppakatu 5",
-      "postinumero": "70500",
+      "osoite": "Kauppakatu 4",
+      "postinumero": "70400",
       "postitmp": "Kuopio",
-      "puh": "040-123125"
+      "puh": "040-123122"
     },
     {
       "id": 6,
