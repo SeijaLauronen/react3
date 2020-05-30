@@ -119,7 +119,7 @@ function useFormInput(initialValue) {
 }//useFormInput END
 
 
-function useAsiakasdata(as,ascount) {//ei nyt tarviikaan tuota ascount:ia....
+function useAsiakasdata(as,ascount) {
 
     function handleButtonClick(e,todo) { //tämä on siis deletelle
         //alert("Klikattu:" + e.target.name);      

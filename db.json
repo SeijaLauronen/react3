@@ -8,6 +8,7 @@
       "postitmp": "Kuopio",
       "puh": "040-123121"
     },
+    
     {
       "id": 2,
       "nimi": "Miina",
@@ -31,6 +32,14 @@
       "postinumero": "70400",
       "postitmp": "Kuopio",
       "puh": "040-123122"
+    },
+    {
+      "id": 5,
+      "nimi": "Teppo",
+      "osoite": "Kauppakatu 5",
+      "postinumero": "70500",
+      "postitmp": "Kuopio",
+      "puh": "040-123125"
     },
     {
       "id": 6,
